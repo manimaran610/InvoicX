@@ -5,6 +5,7 @@ import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { Table } from 'primeng/table';
 import { RouterLink } from '@angular/router';
+import { GridColumnOptions } from '../../shared/Models/grid-column-options';
 
 
 interface expandedRows {
@@ -17,6 +18,7 @@ interface expandedRows {
 export class ViewCustomerComponent implements OnInit {
 
     customers1: Customer[] = [];
+    listOfRooms: any[] = [];
 
     customers2: Customer[] = [];
 
@@ -27,6 +29,8 @@ export class ViewCustomerComponent implements OnInit {
     selectedCustomer: Customer = {};
 
     representatives: Representative[] = [];
+
+    gridColumnOptions: GridColumnOptions[] =[]
 
     statuses: any[] = [];
 
@@ -59,6 +63,19 @@ export class ViewCustomerComponent implements OnInit {
         this.customerService.getCustomersMedium().then(customers => this.customers2 = customers);
         this.customerService.getCustomersLarge().then(customers => this.customers3 = customers);
         this.productService.getProductsWithOrdersSmall().then(data => this.products = data);
+
+        
+   this.gridColumnOptions = [
+    { field: 'name', header: 'Room Name', isSortable: true, hasTableValue: true, isStandalone: false },
+    { field: 'designACPH', header: 'Design ACPH', hasTableValue: true, isStandalone: false },
+    { field: 'noOfGrills', header: 'No. of Grills', hasTableValue: true, isStandalone: false },
+    { field: 'roomVolume', header: 'Room Volume', hasTableValue: true, isStandalone: false },
+    { field: 'totalAirFlowCFM', header: 'Total AirFlow CFM', hasTableValue: true, isStandalone: false },
+    { field: 'airChangesPerHour', header: 'Air Changes per hour', hasTableValue: true, isStandalone: false },
+    { field: '', header: '', hasTableValue: false, isStandalone: false }
+
+  ]
+
 
         this.representatives = [
             { name: 'Amy Elsner', image: 'amyelsner.png' },

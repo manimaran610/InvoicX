@@ -18,6 +18,19 @@
                 <button pButton label="Add" class="p-button-outlined-left mb-2" icon="pi pi-plus"
                     routerLink="/customer/AddCustomer"></button>
             </ng-template> -->
+
+            <app-grid
+            [title]="'ACPH Room Grills'"
+            [listOfItems]="listOfRooms"
+            [gridColumnOptions]="gridColumnOptions"
+            [canPreview]="true"
+            [canDelete]="true"
+            [dataKey]="'id'"
+            [deleteConfirmDialogEnabled]="true"
+        
+          ></app-grid>
+
+
             <p-table #dt1 [value]="customers1" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true"
                 styleClass="p-datatable-gridlines" [paginator]="true"
                 [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll">
