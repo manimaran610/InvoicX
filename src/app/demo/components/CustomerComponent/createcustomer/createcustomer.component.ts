@@ -6193,17 +6193,7 @@ export class CreatecustomerComponent implements OnInit {
         }
       }
     })
-    // this.CreateCustomerForm();
-    // this.fetchCityStates();
   }
-  // async fetchCityStates() {
-  //   this.states = await this.dbservice.GetCityStates();
-  //   console.log(this.states);
-  // }
-  // public CreateCustomerForm() {
-    
-
-  // }
   public async getCustomerIdById(customerId:number){
     this.customer = await this.dbservice.GetCustomerById(customerId);
     console.log(this.customer);
@@ -6236,8 +6226,6 @@ export class CreatecustomerComponent implements OnInit {
     }
   }
   searchStates(event: any) {
-    // in a real application, make a request to a remote url with the query and
-    // return filtered results, for demo we filter at client side
     const filtered: any[] = [];
     const query = event.query;
     // tslint:disable-next-line:prefer-for-of
@@ -6250,16 +6238,11 @@ export class CreatecustomerComponent implements OnInit {
 
     this.filteredStates = filtered;
     this.enableCity=false
-
-  //  this.cities= this.cities.filter(x=>x.state==this.filteredStates)
-  //  console.log(this.cities)
 }
 setCities(event:any){
   this.enableCity = true;
   console.log(this.CustomerForm.get('state').value)
   if(this.CustomerForm.get('state').value){
-
-    // console.log(this.filteredStates)
     const filtered: any[] = [];
     for (let i = 0; i < this.filteredStates.length; i++) {
       filtered.push(this.cities.filter(x=>x.state==this.filteredStates[i].name))
