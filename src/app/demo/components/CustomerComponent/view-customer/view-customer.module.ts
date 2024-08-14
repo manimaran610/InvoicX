@@ -41,7 +41,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 		DropdownModule,
 		ProgressBarModule,
 		ToastModule,
-        ToolbarModule
+        ToolbarModule,
     ],
     declarations: [ViewCustomerComponent]
 })

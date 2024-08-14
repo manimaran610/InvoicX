@@ -4,7 +4,8 @@ import { CreatecustomerComponent } from './createcustomer.component';
 
 @NgModule({
     imports: [RouterModule.forChild([
-        { path: '', component: CreatecustomerComponent }
+        { path: '', component: CreatecustomerComponent },
+        { path: ':id', component: CreatecustomerComponent }
     ])],
     exports: [RouterModule]
 })

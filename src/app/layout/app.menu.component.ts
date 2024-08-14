@@ -24,7 +24,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Customer',
                 items: [
                     { label: 'View Customer', icon: 'pi pi-chart-bar', routerLink: ['/view/ViewDashboard'] },
-                    { label: 'Create Customer', icon: 'pi pi-plus-circle', routerLink: ['/view'] },
+                    { label: 'Create Customer', icon: 'pi pi-plus-circle', routerLink: ['/customer/AddCustomer'] },
                 ]
             },
             {

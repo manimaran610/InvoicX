@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateCustomerRoutingModule } from './createcustomer-routing.module';
 import { CreatecustomerComponent } from './createcustomer.component';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -13,6 +13,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { numberonlyDirective } from 'src/app/demo/Directives/numberonly.directive';
+import { DecimalTwoPlacesDirective } from 'src/app/demo/Directives/DecimalTwoPlacesDirective.directive';
+import { InputGroup, InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddon, InputGroupAddonModule } from 'primeng/inputgroupaddon';
 
 @NgModule({
     imports: [
@@ -24,13 +28,16 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 		CalendarModule,
 		ChipsModule,
 		DropdownModule,
+		InputGroupModule,
+		InputGroupAddonModule,
 		InputMaskModule,
 		InputNumberModule,
 		CascadeSelectModule,
 		MultiSelectModule,
 		InputTextareaModule,
-		InputTextModule
+		InputTextModule,
+		ReactiveFormsModule,
     ],
-    declarations: [CreatecustomerComponent]
+    declarations: [CreatecustomerComponent,numberonlyDirective,DecimalTwoPlacesDirective]
 })
 export class CreateCustomerModule { }
