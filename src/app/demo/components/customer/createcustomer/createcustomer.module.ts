@@ -17,6 +17,7 @@ import { numberonlyDirective } from 'src/app/demo/Directives/numberonly.directiv
 import { DecimalTwoPlacesDirective } from 'src/app/demo/Directives/DecimalTwoPlacesDirective.directive';
 import { InputGroup, InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddon, InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { StatesCities } from '../shared/constants/states-cities';
 
 @NgModule({
     imports: [
@@ -36,8 +37,9 @@ import { InputGroupAddon, InputGroupAddonModule } from 'primeng/inputgroupaddon'
 		MultiSelectModule,
 		InputTextareaModule,
 		InputTextModule,
-		ReactiveFormsModule,
+		ReactiveFormsModule
     ],
-    declarations: [CreatecustomerComponent,numberonlyDirective,DecimalTwoPlacesDirective]
+    declarations: [CreatecustomerComponent,numberonlyDirective,DecimalTwoPlacesDirective],
+	providers:[StatesCities]
 })
 export class CreateCustomerModule { }

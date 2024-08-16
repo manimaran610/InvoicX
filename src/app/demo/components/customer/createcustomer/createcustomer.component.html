@@ -3,11 +3,12 @@
 		<form [formGroup]="CustomerForm">
 			<div class="card">
 				<div class="field col-12 md:col-12 text-center">
+					
 					<h1>Customer Details</h1>
 				</div>
 				<div class="p-fluid p-formgrid grid">
 					<div class="field col-12 md:col-6">
-						<label htmlFor="name">Company name</label>
+						<label  class="block text-900 text-xl font-medium mb-2" htmlFor="name">Company name</label>
 						<span class="p-input-icon-left">
 							<i class="pi pi-building"></i>
 							<input pInputText id="name" type="text" formControlName="name" placeholder="Company name" />
@@ -19,7 +20,7 @@
 						</small>
 					</div>
 					<div class="field col-12 md:col-6">
-						<label htmlFor="ownerName">Owner name</label>
+						<label  class="block text-900 text-xl font-medium mb-2" htmlFor="ownerName">Owner name</label>
 						<span class="p-input-icon-left">
 							<i class="pi pi-user"></i>
 							<input pInputText id="ownerName" type="text" formControlName="ownername"
@@ -32,7 +33,7 @@
 						</small>
 					</div>
 					<div class="field col-12 md:col-6">
-						<label htmlFor="street1">Street 1</label>
+						<label  class="block text-900 text-xl font-medium mb-2" htmlFor="street1">Street 1</label>
 						<span class="p-input-icon-left">
 							<i class="pi pi-home"></i>
 
@@ -46,7 +47,7 @@
 						</small>
 					</div>
 					<div class="field col-12 md:col-6">
-						<label htmlFor="street2">Street 2</label>
+						<label  class="block text-900 text-xl font-medium mb-2" htmlFor="street2">Street 2</label>
 						<span class="p-input-icon-left">
 							<i class="pi pi-home"></i>
 
@@ -60,7 +61,7 @@
 						</small>
 					</div>
 					<div class="field col-6 md:col-6">
-						<label htmlFor="state">State</label>
+						<label  class="block text-900 text-xl font-medium mb-2" htmlFor="state">State</label>
 						<span class="p-input-icon-left">
 							<i class="pi pi-map"></i>
 							<p-autoComplete inputId="autocomplete" formControlName="state"
@@ -74,7 +75,7 @@
 						</small>
 					</div> 
 					<div class="field col-6 md:col-3" [ngClass]="{'disabled': !enableCity}">
-						<label htmlFor="city">City</label>
+						<label  class="block text-900 text-xl font-medium mb-2" htmlFor="city">City</label>
 						<span class="p-input-icon-left">
 							<i class="pi pi-map"></i>
 							<p-dropdown [options]="filteredCities" optionLabel="name" formControlName="city"
@@ -87,7 +88,7 @@
 						</small>
 					</div>
 					<div class="field col-12 md:col-3">
-						<label htmlFor="Pincode">Pincode</label>
+						<label  class="block text-900 text-xl font-medium mb-2" htmlFor="Pincode">Pincode</label>
 						<span class="p-input-icon-left">
 							<i class="pi pi-map-marker"></i>
 							<input pInputText id="pincode" type="text" formControlName="pincode" placeholder="pincode"
@@ -103,7 +104,7 @@
 						</small>
 					</div>
 					<div class="field col-12 md:col-6">
-						<label htmlFor="phone">Phone</label>
+						<label  class="block text-900 text-xl font-medium mb-2" htmlFor="phone">Phone</label>
 						<p-inputGroup>
 							<p-inputGroupAddon>
 								+91
@@ -124,7 +125,7 @@
 						</small>
 					</div>
 					<div class="field col-12 md:col-3">
-						<label htmlFor="GSTIN">GSTIN</label>
+						<label  class="block text-900 text-xl font-medium mb-2" htmlFor="GSTIN">GSTIN</label>
 						<span class="p-input-icon-left">
 							<i class="pi pi-money-bill"></i>
 							<input pInputText id="GST" type="text" formControlName="GST" placeholder="GST" />
@@ -138,7 +139,7 @@
 						</small>
 					</div>
 					<div class="field col-12 md:col-3">
-						<label htmlFor="OpenBalanace">Opening Balanace</label>
+						<label  class="block text-900 text-xl font-medium mb-2" htmlFor="OpenBalanace">Opening Balanace</label>
 						<span class="p-input-icon-left">
 							<i class="pi pi-indian-rupee"></i>
 

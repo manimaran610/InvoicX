@@ -8,7 +8,7 @@ import { CityStates, Country, Customer, Customers, States } from "../api/custome
 export class DbserverserviceService {
   constructor(private http: HttpClient) { }
   GetCustomer(): Promise<Customers[]> {
-    const WORKSPACE_URL = "https://3000-idx-manimarketsoftwarae-1722502139104.cluster-fu5knmr55rd44vy7k7pxk74ams.cloudworkstations.dev/Customer";
+    const WORKSPACE_URL = "https://3000-idx-invoicx-1722047333548.cluster-fu5knmr55rd44vy7k7pxk74ams.cloudworkstations.dev/Customer";
 
     async function get(url): Promise<Customers[]> {
       const response = await fetch(url, {
@@ -22,7 +22,7 @@ export class DbserverserviceService {
     return get(WORKSPACE_URL);
   }
   GetCustomerById(customerId:number): Promise<Customers> {
-    const WORKSPACE_URL = "https://3000-idx-manimarketsoftwarae-1722502139104.cluster-fu5knmr55rd44vy7k7pxk74ams.cloudworkstations.dev/Customer";
+    const WORKSPACE_URL = "https://3000-idx-invoicx-1722047333548.cluster-fu5knmr55rd44vy7k7pxk74ams.cloudworkstations.dev/Customer";
 
     async function get(url): Promise<Customers> {
       const response = await fetch(url, {
