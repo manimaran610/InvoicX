@@ -4,7 +4,7 @@
         "name": "ADYAR GATE HOTELS LIMITED",
         "street1": "NO 132, T.T.K ROAD",
         "street2": "ALWARPET",
-        "city": "CHENNAI 600018",
+        "city": "Chennai",
         "state": "TAMILNADU",
         "phone": 24994101,
         "cell": "",
@@ -12,7 +12,7 @@
         "GST": "19.11",
         "id": 1,
         "code": 1,
-        "ownername": "Mani Maran",
+        "ownerName": "Mani Maran",
         "pincode": "123456",
         "OpenBalanace": 10.00
       },
@@ -28,7 +28,7 @@
         "GST": "22.22",
         "id": 2,
         "code": 2,
-        "ownername": "",
+        "ownerName": "Hashini",
         "pincode": "123456",
         "OpenBalanace": 220.99
       },
@@ -36,7 +36,7 @@
         "name": "HABLIS HOTELS",
         "street1": "NO.19, GST ROAD",
         "street2": "GUINDY",
-        "city": "CHENNAI 600032",
+        "city": "Chennai",
         "state": "TAMILNADU",
         "phone": "8939884007",
         "cell": 8939884007,
@@ -44,9 +44,9 @@
         "GST": "1.2",
         "id": 3,
         "code": 3,
-        "ownername": "",
+        "ownerName": "Hashini",
         "pincode": "123456",
-        "OpenBalanace": 0
+        "openBalanace": 15000
       },
       {
         "name": "HOLIDAY INN",
@@ -60,15 +60,15 @@
         "GST": "22.99",
         "id": 4,
         "code": 4,
-        "ownername": "",
+        "ownerName": "Hashini",
         "pincode": "123456",
-        "OpenBalanace": 0
+        "openBalanace": 15000
       },
       {
         "name": "INTERCONTINENTAL CHENNAI",
         "street1": "NO.212, EAST COAST ROAD",
         "street2": "NEMELI VILLAGE CHENGALPATTU DISTRICT",
-        "city": "CHENNAI 603104",
+        "city": "Chennai",
         "state": "TAMILNADU",
         "phone": "8939865505",
         "cell": 8939865505,
@@ -76,9 +76,9 @@
         "GST": "10",
         "id": 5,
         "code": 5,
-        "ownername": "",
+        "ownerName": "Hashini",
         "pincode": "123456",
-        "OpenBalanace": 0
+        "openBalanace": 15000
       },
       {
         "name": "OBEROI FLIGHT SERVICES",
@@ -92,9 +92,9 @@
         "GST": "",
         "id": 6,
         "code": 6,
-        "ownername": "",
+        "ownerName": "Hashini",
         "pincode": "123456",
-        "OpenBalanace": 0
+        "openBalanace": 15000
       },
       {
         "name": "RADHA REGENTCHENNAI",
@@ -108,9 +108,9 @@
         "GST": "",
         "id": 7,
         "code": 7,
-        "ownername": "",
+        "ownerName": "Hashini",
         "pincode": "123456",
-        "OpenBalanace": 0
+        "openBalanace": 15000
       },
       {
         "name": "TRIDENT HOTELS LIMITED",
@@ -124,9 +124,9 @@
         "GST": "",
         "id": 8,
         "code": 8,
-        "ownername": "",
+        "ownerName": "Hashini",
         "pincode": "123456",
-        "OpenBalanace": 0
+        "openBalanace": 15000
       },
       {
         "name": "EXPRESS INFRASTRUCTURE PVT LTD",
@@ -140,9 +140,9 @@
         "GST": "",
         "id": 9,
         "code": 9,
-        "ownername": "",
+        "ownerName": "Hashini",
         "pincode": "123456",
-        "OpenBalanace": 0
+        "openBalanace": 15000
       },
       {
         "name": "CASH",
@@ -156,9 +156,9 @@
         "GST": "",
         "id": 10,
         "code": 10,
-        "ownername": "Iswarya",
+        "ownerName": "Iswarya",
         "pincode": "123456",
-        "OpenBalanace": 0
+        "openBalanace": 15000
       }
     ],
   "states" : [

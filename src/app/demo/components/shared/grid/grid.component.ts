@@ -1,14 +1,15 @@
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ChangeDetectionStrategy, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ElementRef, OnChanges } from '@angular/core';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
-import { TableModule } from 'primeng/table';
+import { Table, TableModule } from 'primeng/table';
 import { GroupedColumnOptions } from '../Models/grouped-column-options';
 import { GridColumnOptions } from '../Models/grid-column-options';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 
@@ -17,7 +18,7 @@ import { GridColumnOptions } from '../Models/grid-column-options';
 @Component({
     selector: 'app-grid',
     standalone: true,
-    imports: [CommonModule, ConfirmDialogModule, TableModule, FormsModule],
+    imports: [CommonModule, ConfirmDialogModule, TableModule, FormsModule,InputTextModule],
     providers: [ConfirmationService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     changeDetection: ChangeDetectionStrategy.Default,
@@ -28,6 +29,8 @@ export class GridComponent implements OnInit, OnChanges {
 
 
     @ViewChild('singleSelectionTable', { static: false }) singleSelectionTable: any;
+    @ViewChild('filter') filter!: ElementRef;
+
 
     @Input() title: string = '';
     @Input() isBordered: boolean = false;
@@ -54,7 +57,7 @@ export class GridComponent implements OnInit, OnChanges {
     @Input() isDownloading: boolean = false;
     @Input() isCopying: boolean = false;
     @Input() deleteConfirmDialogEnabled: boolean = false;
-
+    @Input() hasGlobalSearch: boolean = false;
 
 
     @Input() addNewRow: EventEmitter<any> = new EventEmitter<any>();
@@ -81,6 +84,7 @@ export class GridComponent implements OnInit, OnChanges {
     clonedProducts: { [s: string]: any } = {};
     isNewRowInserted: boolean = false;
     currentEventItem: any;
+    globalFilterFields:string[] = [];
 
     getRowSpan = () => this.groupedColumnOptions.flatMap(group => group.gridColumnOptions).sort((obj1, obj2) => parseInt(obj1.rowspan!) - parseInt(obj2.rowspan!))[0].rowspan;
     getFilteredGroupColumns = () => this.groupedColumnOptions.flatMap(group => group.gridColumnOptions).filter(option => option.hasTableValue && !option.isStandalone).sort((obj1, obj2) => obj1.orderNo! - obj2.orderNo!)
@@ -96,6 +100,7 @@ export class GridComponent implements OnInit, OnChanges {
                 this.addNewEditableRow()
             }
         })
+        this.globalFilterFields =[...this.gridColumnOptions.filter(op=>op.hasFilter).map(e=>e.field)]
 
     }
 
@@ -187,6 +192,15 @@ export class GridComponent implements OnInit, OnChanges {
         }
 
 
+    }
+
+    onGlobalFilter(table: Table, event: Event) {
+        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+    }
+
+    clear(table: Table) {
+        table.clear();
+        this.filter.nativeElement.value = '';
     }
 
     private generateRandomId = (): string => {

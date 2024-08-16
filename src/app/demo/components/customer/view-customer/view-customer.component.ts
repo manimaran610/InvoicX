@@ -7,6 +7,7 @@ import { Table } from 'primeng/table';
 import { Router, RouterLink } from '@angular/router';
 import { DbserverserviceService } from 'src/app/demo/service/DbserverserviceService';
 import { HttpClient } from '@angular/common/http';
+import { GridColumnOptions } from '../../shared/Models/grid-column-options';
 
 
 interface expandedRows {
@@ -17,6 +18,7 @@ interface expandedRows {
     templateUrl: './view-customer.component.html',
 })
 export class ViewCustomerComponent implements OnInit {
+
 
     customers1: Customers[] = [];
 
@@ -64,48 +66,18 @@ export class ViewCustomerComponent implements OnInit {
         console.log(this.customers1);
         this.loading = false;
       }
-    // onSort() {
-    //     this.updateRowGroupMetaData();
-    // }
 
-    // updateRowGroupMetaData() {
-    //     this.rowGroupMetadata = {};
+      options: GridColumnOptions[] = [
+        { field: 'name', header: 'Customer Name', isSortable: true, hasFilter: true, hasTableValue: true },
+        { field: 'ownerName', header: 'Owner Name', isSortable: true, hasFilter: true, hasTableValue: true },
+        { field: 'city', header: 'City', isSortable: true, hasFilter: true, hasTableValue: true },
+        { field: 'openBalanace', header: 'Balance', isSortable: true, hasFilter: true, hasTableValue: true },
+        { field: '', header: 'User Action',hasTableValue: false } // for action buttons
+    
+      ]
 
-    //     if (this.customers3) {
-    //         for (let i = 0; i < this.customers3.length; i++) {
-    //             const rowData = this.customers3[i];
-    //             const representativeName = rowData?.representative?.name || '';
+    
 
-    //             if (i === 0) {
-    //                 this.rowGroupMetadata[representativeName] = { index: 0, size: 1 };
-    //             }
-    //             else {
-    //                 const previousRowData = this.customers3[i - 1];
-    //                 const previousRowGroup = previousRowData?.representative?.name;
-    //                 if (representativeName === previousRowGroup) {
-    //                     this.rowGroupMetadata[representativeName].size++;
-    //                 }
-    //                 else {
-    //                     this.rowGroupMetadata[representativeName] = { index: i, size: 1 };
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
-    expandAll() {
-        if (!this.isExpanded) {
-            this.products.forEach(product => product && product.name ? this.expandedRows[product.name] = true : '');
-
-        } else {
-            this.expandedRows = {};
-        }
-        this.isExpanded = !this.isExpanded;
-    }
-
-    formatCurrency(value: number) {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    }
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
@@ -116,11 +88,15 @@ export class ViewCustomerComponent implements OnInit {
         this.filter.nativeElement.value = '';
     }
 
-    AddCustomer() {
-    }
-    NavigateUrl(id:number){
+    addCustomer() {}
+
+    navigateUrl(id:number){
         console.log(id);
         this.route.navigateByUrl(`/customer/AddCustomer/${id}`)
     }
+
+    onPreviewEvent($event: any) {
+        this.navigateUrl($event.id)
+        }
 
 }

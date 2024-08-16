@@ -19,6 +19,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
+import { GridComponent } from '../../shared/grid/grid.component';
 
 @NgModule({
     imports: [
@@ -42,6 +43,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 		ProgressBarModule,
 		ToastModule,
         ToolbarModule,
+        GridComponent
     ],
     declarations: [ViewCustomerComponent]
 })

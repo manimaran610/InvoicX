@@ -30,8 +30,8 @@ export interface Customers {
     GST: string,
     id: number,
     code: number,
-    ownername: string,
-    OpenBalanace: number,
+    ownerName: string,
+    openBalanace: number,
     pincode:string
 }
 

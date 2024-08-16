@@ -23,7 +23,21 @@
   [sortField]="sortField!"
   [sortOrder]="sortOrder"
   styleClass="p-datatable-gridlines" 
+  [globalFilterFields]="globalFilterFields"
 >
+<ng-template *ngIf="hasGlobalSearch" pTemplate="caption">
+  <div class="flex justify-content-between flex-column sm:flex-row">
+      <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
+          (click)="clear(singleSelectionTable)"></button>
+      <span class="p-input-icon-left mb-2">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" #filter (input)="onGlobalFilter(singleSelectionTable, $event)"
+              placeholder="Search Keyword" class="w-full" />
+      </span>
+
+  </div>
+</ng-template>
+
   <ng-template *ngIf="hasColumnGroup" pTemplate="header" let-columns>
     <tr *ngFor="let gridcol of columns">
       <th *ngIf="hasradioButton" style="width: 4rem"></th>
@@ -132,13 +146,14 @@
           <button *ngIf="!editing && canDelete" iconType="delete" class="m-2 btn btn-primary" (click)="onRowDelete(rowData, rowIndex)" title="Delete"
             ><i class="feather icon-trash"></i
           ></button>
-          <button *ngIf="canCopy && !editing" iconType="copy" class="m-2 btn btn-primary" (click)="onRowCopyEvent(rowData)" title="Clone">
+          <button *ngIf="canCopy && !editing" iconType="copy" class="m-2 btn " (click)="onRowCopyEvent(rowData)" title="Clone">
             <span *ngIf="isCopying && rowData === currentEventItem" class="spinner-border spinner-border-sm me-1"></span>
             <i *ngIf="!(isCopying && rowData === currentEventItem)" class="feather icon-copy"></i
           ></button>
-          <button *ngIf="canPreview && !editing" iconType="eye" class="m-2 btn btn-primary" (click)="onRowPreviewEvent(rowData)" title="View"
-            ><i class="feather icon-eye"></i
-          ></button>
+
+          <button *ngIf="canPreview && !editing" pButton pRipple label="View" icon="pi pi-eye" class="p-button-text"
+          (click)="onRowPreviewEvent(rowData)"></button>
+
           <button *ngIf="canDownload && !editing" iconType="eye" class="m-2 btn btn-primary" (click)="onRowDownloadEvent(rowData)" title="Download">
             <span *ngIf="isDownloading && rowData === currentEventItem" class="spinner-border spinner-border-sm me-1"></span>
             <i *ngIf="!(isDownloading && rowData === currentEventItem)" class="feather icon-download"></i
@@ -198,9 +213,10 @@
           <span *ngIf="isCopying && rowData === currentEventItem" class="spinner-border spinner-border-sm me-1"></span>
           <i *ngIf="!(isCopying && rowData === currentEventItem)" class="feather icon-copy"></i
         ></button>
-        <button *ngIf="canPreview && !editing" iconType="eye" class="m-2 btn btn-primary" (click)="onRowPreviewEvent(rowData)" title="View"
-          ><i class="feather icon-eye"></i
-        ></button>
+      
+        <button *ngIf="canPreview && !editing" pButton pRipple label="View" icon="pi pi-eye" class="p-button-text"
+        (click)="onRowPreviewEvent(rowData)"></button>
+
         <button *ngIf="canDownload && !editing" iconType="eye" class="m-2 btn btn-primary" (click)="onRowDownloadEvent(rowData)" title="Download">
           <span *ngIf="isDownloading && rowData === currentEventItem" class="spinner-border spinner-border-sm me-1"></span>
           <i *ngIf="!(isDownloading && rowData === currentEventItem)" class="feather icon-download"></i
