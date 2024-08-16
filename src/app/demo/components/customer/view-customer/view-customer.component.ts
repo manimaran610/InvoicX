@@ -1,18 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Customer, Customers, Representative } from 'src/app/demo/api/customer';
+import {  Customers } from 'src/app/demo/api/customer';
 import { CustomerService } from 'src/app/demo/service/customer.service';
 import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
-import { Table } from 'primeng/table';
 import { Router, RouterLink } from '@angular/router';
 import { DbserverserviceService } from 'src/app/demo/service/DbserverserviceService';
 import { HttpClient } from '@angular/common/http';
 import { GridColumnOptions } from '../../shared/Models/grid-column-options';
-
-
-interface expandedRows {
-    [key: string]: boolean;
-}
 
 @Component({
     templateUrl: './view-customer.component.html',
@@ -22,25 +16,7 @@ export class ViewCustomerComponent implements OnInit {
 
     customers1: Customers[] = [];
 
-    selectedCustomers1: Customer[] = [];
-
-    selectedCustomer: Customer = {};
-
-    representatives: Representative[] = [];
-
-    statuses: any[] = [];
-
     products: Product[] = [];
-
-    rowGroupMetadata: any;
-
-    expandedRows: expandedRows = {};
-
-    activityValues: number[] = [0, 100];
-
-    isExpanded: boolean = false;
-
-    idFrozen: boolean = false;
 
     loading: boolean = true;
 
@@ -56,19 +32,19 @@ export class ViewCustomerComponent implements OnInit {
         //     // @ts-ignore
         //     this.customers1.forEach(customer => customer.date = new Date(customer.date));
         // });
-        this.fetchProducts();
+        this.fetchCustomers();
         this.productService.getProductsWithOrdersSmall().then(data => this.products = data);
 
         
     }
-    async fetchProducts() {
+    async fetchCustomers() {
         this.customers1 = await this.dbservice.GetCustomer();
         console.log(this.customers1);
         this.loading = false;
       }
 
       options: GridColumnOptions[] = [
-        { field: 'name', header: 'Customer Name', isSortable: true, hasFilter: true, hasTableValue: true },
+        { field: 'name', header: 'Customer Name', isSortable: true, hasFilter: true, hasTableValue: true,dataClass:'text-primary font-semibold' },
         { field: 'ownerName', header: 'Owner Name', isSortable: true, hasFilter: true, hasTableValue: true },
         { field: 'city', header: 'City', isSortable: true, hasFilter: true, hasTableValue: true },
         { field: 'openBalanace', header: 'Balance', isSortable: true, hasFilter: true, hasTableValue: true },
@@ -77,16 +53,6 @@ export class ViewCustomerComponent implements OnInit {
       ]
 
     
-
-
-    onGlobalFilter(table: Table, event: Event) {
-        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
-    }
-
-    clear(table: Table) {
-        table.clear();
-        this.filter.nativeElement.value = '';
-    }
 
     addCustomer() {}
 
