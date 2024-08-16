@@ -1,0 +1,166 @@
+<div class="grid">
+	<div class="col-12">
+		<form [formGroup]="CustomerForm">
+			<div class="card">
+				<div class="field col-12 md:col-12 text-center">
+					<h1>Customer Details</h1>
+				</div>
+				<div class="p-fluid p-formgrid grid">
+					<div class="field col-12 md:col-6">
+						<label htmlFor="name">Company name</label>
+						<span class="p-input-icon-left">
+							<i class="pi pi-building"></i>
+							<input pInputText id="name" type="text" formControlName="name" placeholder="Company name" />
+						</span>
+						<small class="p-error x-2"
+							*ngIf="CustomerForm.controls['name'].invalid && (CustomerForm.controls['name'].dirty || CustomerForm.controls['name'].touched)">
+							<div *ngIf="CustomerForm.controls['name'].errors?.['required']">Company name is required.
+							</div>
+						</small>
+					</div>
+					<div class="field col-12 md:col-6">
+						<label htmlFor="ownerName">Owner name</label>
+						<span class="p-input-icon-left">
+							<i class="pi pi-user"></i>
+							<input pInputText id="ownerName" type="text" formControlName="ownername"
+								placeholder="Owner name" />
+						</span>
+						<small class="p-error x-2"
+							*ngIf="CustomerForm.controls['ownername'].invalid && (CustomerForm.controls['ownername'].dirty || CustomerForm.controls['ownername'].touched)">
+							<div *ngIf="CustomerForm.controls['ownername'].errors?.['required']"> OwnerName is required.
+							</div>
+						</small>
+					</div>
+					<div class="field col-12 md:col-6">
+						<label htmlFor="street1">Street 1</label>
+						<span class="p-input-icon-left">
+							<i class="pi pi-home"></i>
+
+							<input pInputText id="street1" type="text" formControlName="street1"
+								placeholder="Building No. / Street" />
+						</span>
+						<small class="p-error x-2"
+							*ngIf="CustomerForm.controls['street1'].invalid && (CustomerForm.controls['street1'].dirty || CustomerForm.controls['street1'].touched)">
+							<div *ngIf="CustomerForm.controls['street1'].errors?.['required']"> Street1 is required.
+							</div>
+						</small>
+					</div>
+					<div class="field col-12 md:col-6">
+						<label htmlFor="street2">Street 2</label>
+						<span class="p-input-icon-left">
+							<i class="pi pi-home"></i>
+
+							<input pInputText id="street2" type="text" formControlName="street2"
+								placeholder="Street / Area" />
+						</span>
+						<small class="p-error x-2"
+							*ngIf="CustomerForm.controls['street2'].invalid && (CustomerForm.controls['street2'].dirty || CustomerForm.controls['street2'].touched)">
+							<div *ngIf="CustomerForm.controls['street2'].errors?.['required']"> Street2 is required.
+							</div>
+						</small>
+					</div>
+					<div class="field col-6 md:col-6">
+						<label htmlFor="state">State</label>
+						<span class="p-input-icon-left">
+							<i class="pi pi-map"></i>
+							<p-autoComplete inputId="autocomplete" formControlName="state"
+								[suggestions]="filteredStates" (completeMethod)="searchStates($event)"
+								(onSelect)="setCities($event)" field="name" placeholder="State"></p-autoComplete>
+						</span>
+						<small class="p-error x-2"
+							*ngIf="CustomerForm.controls['state'].invalid && (CustomerForm.controls['state'].dirty || CustomerForm.controls['state'].touched)">
+							<div *ngIf="CustomerForm.controls['state'].errors?.['required']"> State is required.
+							</div>
+						</small>
+					</div> 
+					<div class="field col-6 md:col-3" [ngClass]="{'disabled': !enableCity}">
+						<label htmlFor="city">City</label>
+						<span class="p-input-icon-left">
+							<i class="pi pi-map"></i>
+							<p-dropdown [options]="filteredCities" optionLabel="name" formControlName="city"
+								placeholder="City" [disabled]="!enableCity" ></p-dropdown>
+						</span>
+						<small class="p-error x-2"
+							*ngIf="(CustomerForm.controls['city'].invalid && (CustomerForm.controls['city'].dirty || CustomerForm.controls['city'].touched) && enableCity)">
+							<div *ngIf="CustomerForm.controls['city'].errors?.['required']"> City is required.
+							</div>
+						</small>
+					</div>
+					<div class="field col-12 md:col-3">
+						<label htmlFor="Pincode">Pincode</label>
+						<span class="p-input-icon-left">
+							<i class="pi pi-map-marker"></i>
+							<input pInputText id="pincode" type="text" formControlName="pincode" placeholder="pincode"
+								numberonly>
+						</span>
+						<small class="p-error x-2"
+							*ngIf="CustomerForm.controls['pincode'].invalid && (CustomerForm.controls['pincode'].dirty || CustomerForm.controls['pincode'].touched)">
+							<div *ngIf="CustomerForm.controls['pincode'].errors?.['required']">Pincode is required.
+							</div>
+							<div *ngIf="CustomerForm.controls['pincode'].errors?.['minlength']">Pincode alteast have 6
+								digit.
+							</div>
+						</small>
+					</div>
+					<div class="field col-12 md:col-6">
+						<label htmlFor="phone">Phone</label>
+						<p-inputGroup>
+							<p-inputGroupAddon>
+								+91
+							</p-inputGroupAddon>
+							<span class="p-float-label">
+								<input type="text" inputId="inputgroup" pInputText formControlName="phone" numberonly />
+							</span>
+						</p-inputGroup>
+						<small class="p-error x-2"
+							*ngIf="CustomerForm.controls['phone'].invalid && (CustomerForm.controls['phone'].dirty || CustomerForm.controls['phone'].touched)">
+							<div *ngIf="CustomerForm.controls['phone'].errors?.['required']">Phone number is required.
+							</div>
+							<div *ngIf="CustomerForm.controls['phone'].errors?.['maxlength']">Phone number has 10 digit
+								only.
+							</div>
+							<div *ngIf="CustomerForm.controls['phone'].errors?.['minlength']">Invalid Phone number.
+							</div>
+						</small>
+					</div>
+					<div class="field col-12 md:col-3">
+						<label htmlFor="GSTIN">GSTIN</label>
+						<span class="p-input-icon-left">
+							<i class="pi pi-money-bill"></i>
+							<input pInputText id="GST" type="text" formControlName="GST" placeholder="GST" />
+						</span>
+						<small class="p-error x-2"
+							*ngIf="CustomerForm.controls['GST'].invalid && (CustomerForm.controls['GST'].dirty || CustomerForm.controls['GST'].touched)">
+							<div *ngIf="CustomerForm.controls['GST'].errors?.['required']"> GST is required.
+							</div>
+							<div *ngIf="CustomerForm.controls['GST'].errors?.['pattern']"> Invalid GSTIN value.
+							</div>
+						</small>
+					</div>
+					<div class="field col-12 md:col-3">
+						<label htmlFor="OpenBalanace">Opening Balanace</label>
+						<span class="p-input-icon-left">
+							<i class="pi pi-indian-rupee"></i>
+
+							<input pInputText id="OpenBalanace" type="text" formControlName="OpenBalanace"
+								DecimalTwoPlaces placeholder="opening Balance" />
+						</span>
+						<small class="p-error x-2"
+							*ngIf="CustomerForm.controls['OpenBalanace'].invalid && (CustomerForm.controls['OpenBalanace'].dirty || CustomerForm.controls['OpenBalanace'].touched)">
+							<div *ngIf="CustomerForm.controls['OpenBalanace'].errors?.['required']">Opening balanace is
+								required.
+							</div>
+							<div *ngIf="CustomerForm.controls['OpenBalanace'].errors?.['maxlength']">Invalid
+								Opening Balanace.
+							</div>
+						</small>
+					</div>
+				</div>
+				<div class="flex justify-content-center">
+					<button pButton class="mr-2" label="Submit" (click)="Submit()"></button>
+					<button pButton label="Cancel" routerLink="/customer/ViewCustomer"></button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

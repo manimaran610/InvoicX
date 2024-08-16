@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Customer, Representative } from 'src/app/demo/api/customer';
+import { Customer, Customers, Representative } from 'src/app/demo/api/customer';
 import { CustomerService } from 'src/app/demo/service/customer.service';
 import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { Table } from 'primeng/table';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { DbserverserviceService } from 'src/app/demo/service/DbserverserviceService';
+import { HttpClient } from '@angular/common/http';
 
 
 interface expandedRows {
@@ -12,15 +14,11 @@ interface expandedRows {
 }
 
 @Component({
-  templateUrl: './view-customer.component.html',
+    templateUrl: './view-customer.component.html',
 })
 export class ViewCustomerComponent implements OnInit {
 
-    customers1: Customer[] = [];
-
-    customers2: Customer[] = [];
-
-    customers3: Customer[] = [];
+    customers1: Customers[] = [];
 
     selectedCustomers1: Customer[] = [];
 
@@ -46,18 +44,17 @@ export class ViewCustomerComponent implements OnInit {
 
     @ViewChild('filter') filter!: ElementRef;
 
-    constructor(private customerService: CustomerService, private productService: ProductService) { }
+    constructor(private customerService: CustomerService, private productService: ProductService, private dbservice: DbserverserviceService,private http:HttpClient, private route:Router) { }
 
     ngOnInit() {
-        this.customerService.getCustomersLarge().then(customers => {
-            this.customers1 = customers;
-            this.loading = false;
+        // this.customerService.getCustomersLarge().then(customers => {
+        //     this.customers1 = customers;
+        //     this.loading = false;
 
-            // @ts-ignore
-            this.customers1.forEach(customer => customer.date = new Date(customer.date));
-        });
-        this.customerService.getCustomersMedium().then(customers => this.customers2 = customers);
-        this.customerService.getCustomersLarge().then(customers => this.customers3 = customers);
+        //     // @ts-ignore
+        //     this.customers1.forEach(customer => customer.date = new Date(customer.date));
+        // });
+        this.fetchProducts();
         this.productService.getProductsWithOrdersSmall().then(data => this.products = data);
 
         this.representatives = [
@@ -82,35 +79,39 @@ export class ViewCustomerComponent implements OnInit {
             { label: 'Proposal', value: 'proposal' }
         ];
     }
+    async fetchProducts() {
+        this.customers1 = await this.dbservice.GetCustomer();
+        console.log(this.customers1);
+        this.loading = false;
+      }
+    // onSort() {
+    //     this.updateRowGroupMetaData();
+    // }
 
-    onSort() {
-        this.updateRowGroupMetaData();
-    }
+    // updateRowGroupMetaData() {
+    //     this.rowGroupMetadata = {};
 
-    updateRowGroupMetaData() {
-        this.rowGroupMetadata = {};
+    //     if (this.customers3) {
+    //         for (let i = 0; i < this.customers3.length; i++) {
+    //             const rowData = this.customers3[i];
+    //             const representativeName = rowData?.representative?.name || '';
 
-        if (this.customers3) {
-            for (let i = 0; i < this.customers3.length; i++) {
-                const rowData = this.customers3[i];
-                const representativeName = rowData?.representative?.name || '';
-
-                if (i === 0) {
-                    this.rowGroupMetadata[representativeName] = { index: 0, size: 1 };
-                }
-                else {
-                    const previousRowData = this.customers3[i - 1];
-                    const previousRowGroup = previousRowData?.representative?.name;
-                    if (representativeName === previousRowGroup) {
-                        this.rowGroupMetadata[representativeName].size++;
-                    }
-                    else {
-                        this.rowGroupMetadata[representativeName] = { index: i, size: 1 };
-                    }
-                }
-            }
-        }
-    }
+    //             if (i === 0) {
+    //                 this.rowGroupMetadata[representativeName] = { index: 0, size: 1 };
+    //             }
+    //             else {
+    //                 const previousRowData = this.customers3[i - 1];
+    //                 const previousRowGroup = previousRowData?.representative?.name;
+    //                 if (representativeName === previousRowGroup) {
+    //                     this.rowGroupMetadata[representativeName].size++;
+    //                 }
+    //                 else {
+    //                     this.rowGroupMetadata[representativeName] = { index: i, size: 1 };
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     expandAll() {
         if (!this.isExpanded) {
@@ -134,7 +135,11 @@ export class ViewCustomerComponent implements OnInit {
         table.clear();
         this.filter.nativeElement.value = '';
     }
-    AddCustomer(){
+    AddCustomer() {
     }
-    
+    NavigateUrl(id:number){
+        console.log(id);
+        this.route.navigateByUrl(`/customer/AddCustomer/${id}`)
+    }
+
 }
