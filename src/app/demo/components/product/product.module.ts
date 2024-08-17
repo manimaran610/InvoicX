@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomerRoutingModule } from './customer-routing.module';
+import { ProductRoutingModule } from './product-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        CustomerRoutingModule
+        ProductRoutingModule
     ]
 })
-export class CustomerModule { }
+export class ProductModule { }

@@ -4,10 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Customers } from 'src/app/demo/api/customer';
 import { DbserverserviceService } from 'src/app/demo/service/DbserverserviceService';
 import { StatesCities } from '../shared/constants/states-cities';
+import { PrimeIcons } from 'primeng/api';
 
 
 @Component({
-  templateUrl: './createcustomer.component.html',
+  templateUrl: './createcustomer.component.html'
 })
 export class CreatecustomerComponent implements OnInit {
 
@@ -62,6 +63,8 @@ export class CreatecustomerComponent implements OnInit {
         }
       }
     })
+
+
   }
   public async getCustomerIdById(customerId:number){
     this.customer = await this.dbservice.GetCustomerById(customerId);

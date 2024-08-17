@@ -34,18 +34,12 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Create Sales', icon: 'pi pi-shopping-cart', routerLink: ['/uikit/input'] },
                 ]
             },
-            // {
-            //     label: 'Customers',
-            //     items: [
-            //         { label: 'View Customers', icon: 'pi pi-chart-bar', routerLink: ['/uikit/input'] },
-            //         { label: 'Add New Customer', icon: 'pi pi-shopping-cart', routerLink: ['/uikit/formlayout'] },
-            //     ]
-            // },
+        
             {
                 label: 'Products',
                 items: [
                     { label: 'View Products', icon: 'pi pi-box', routerLink: ['/uikit/input'] },
-                    { label: 'Add New Product', icon: 'pi pi-plus-circle', routerLink: ['/uikit/formlayout'] },
+                    { label: 'Add New Product', icon: 'pi pi-plus-circle', routerLink: ['/product/AddProduct'] },
                 ]
             },
             {

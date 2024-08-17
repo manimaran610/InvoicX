@@ -1,0 +1,130 @@
+<div class="grid">
+	<div class="col-12">
+		<form [formGroup]="productForm">
+			<div class="card">
+				<div class="field col-12 md:col-12 text-center">
+
+					<h1>Product Details</h1>
+				</div>
+				<div class="p-fluid p-formgrid grid">
+					<div class="field col-12 md:col-6">
+						<label class="block text-900 text-xl font-medium mb-2" htmlFor="name">Product name</label>
+						<span class="p-input-icon-left">
+							<i class="pi pi-box"></i>
+							<input pInputText id="name" type="text" formControlName="name" placeholder="Product name" />
+						</span>
+						<small class="p-error x-2"
+							*ngIf="productForm.controls['name'].invalid && (productForm.controls['name'].dirty || productForm.controls['name'].touched)">
+							<div *ngIf="productForm.controls['name'].errors?.['required']">Product name is required.
+							</div>
+						</small>
+					</div>
+					<div class="field col-12 md:col-6">
+						<label class="block text-900 text-xl font-medium mb-2" htmlFor="description">Descrition</label>
+
+
+						<span class="p-input-icon-left">
+							<i class="pi pi-book"></i>
+							<textarea id="description" pInputTextarea formControlName="description" rows="1" cols="5"
+								placeholder="Description"></textarea>
+							<!-- <input pInputText id="description" type="text" formControlName="description"
+								placeholder="Description" /> -->
+
+						</span>
+						<small class="p-error x-2"
+							*ngIf="productForm.controls['description'].invalid && (productForm.controls['description'].dirty || productForm.controls['description'].touched)">
+							<div *ngIf="productForm.controls['description'].errors?.['required']"> Description is
+								required.
+							</div>
+						</small>
+					</div>
+
+					<div class="field col-6 md:col-3">
+						<label class="block text-900 text-xl font-medium mb-2" htmlFor="category">Category</label>
+						<p-dropdown [options]="categoriesList" optionLabel="name" optionValue="id"
+							formControlName="category" placeholder="Category">
+						</p-dropdown>
+
+
+
+						<small class="p-error x-2"
+							*ngIf="(productForm.controls['category'].invalid && (productForm.controls['category'].dirty || productForm.controls['category'].touched) && categoryEnabled)">
+							<div *ngIf="productForm.controls['category'].errors?.['required']"> Category is required.
+							</div>
+						</small>
+					</div>
+
+					<div class="field col-12 md:col-3">
+						<label class="block text-900 text-xl font-medium mb-2" htmlFor="Price">Price</label>
+						<span class="p-input-icon-left">
+							<i class="pi pi-dollar"></i>
+							<input pInputText id="price" type="number" formControlName="price" placeholder="price"
+								numberonly>
+						</span>
+						<small class="p-error x-2"
+							*ngIf="productForm.controls['price'].invalid && (productForm.controls['price'].dirty || productForm.controls['price'].touched)">
+							<div *ngIf="productForm.controls['price'].errors?.['required']">Price is required.
+							</div>
+							<div *ngIf="productForm.controls['price'].errors?.['min']">Minimum price is 1.
+							</div>
+						</small>
+					</div>
+
+					<div class="field col-6 md:col-3">
+						<label class="block text-900 text-xl font-medium mb-2" htmlFor="stockType">Stock Type</label>
+						<span class="p-input-icon-left">
+							<i class="pi pi-map"></i>
+							<p-dropdown [options]="stockTypes" optionLabel="name" optionValue="id"
+								formControlName="stockType" (onChange)="onStockTypeChange()"
+								placeholder="StockType"></p-dropdown>
+						</span>
+						<small class="p-error x-2"
+							*ngIf="(productForm.controls['stockType'].invalid && (productForm.controls['stockType'].dirty || productForm.controls['stockType'].touched))">
+							<div *ngIf="productForm.controls['stockType'].errors?.['required']"> StockType is required.
+							</div>
+						</small>
+					</div>
+
+
+					<div *ngIf="isDynamicStock" class="field col-12 md:col-3">
+						<label class="block text-900 text-xl font-medium mb-2" htmlFor="quantity">Quantity</label>
+						<span class="p-input-icon-left">
+							<i class="pi pi-shopping-cart"></i>
+							<input pInputText id="quantity" type="number" formControlName="quantity" DecimalTwoPlaces
+								placeholder="Quantity" />
+						</span>
+						<small class="p-error x-2"
+							*ngIf="productForm.controls['quantity'].invalid && (productForm.controls['quantity'].dirty || productForm.controls['quantity'].touched) && isDynamicStock">
+							<div *ngIf="productForm.controls['quantity'].errors?.['required']">Quantity is
+								required.
+							</div>
+							<div *ngIf="productForm.controls['quantity'].errors?.['min']"> Minimum quantity is 1.
+							</div>
+						</small>
+					</div>
+
+					<div class="card col-12 m-2">
+						<h5>Product Image</h5>
+							<p-fileUpload [auto]="false" [showCancelButton]="false" [showUploadButton]="false"  [removeStyleClass]="'btn btn-primary'"
+								(onSelect)="onUpload($event)" 
+								 [multiple]="false" accept="image/*" maxFileSize="1000000">
+								<!-- <ng-template pTemplate="content">
+									<ul *ngIf="uploadedFiles.length">
+										<li *ngFor="let file of uploadedFiles">
+											{{ file.name }} - {{ file.size }} bytes
+										</li>
+									</ul>
+								</ng-template> -->
+							</p-fileUpload>
+					
+					</div>
+
+				</div>
+				<div class="flex justify-content-center">
+					<button pButton class="mr-2" label="Submit" (click)="Submit()"></button>
+					<button pButton label="Cancel" routerLink="/customer/ViewCustomer"></button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -9,4 +9,4 @@ import { RouterModule } from '@angular/router';
     ])],
     exports: [RouterModule]
 })
-export class CrudcomponentRoutingModule { }
+export class CustomerRoutingModule { }

@@ -1,0 +1,24 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <div class="my-2">
+                        <h5>Customer Details</h5>
+                    </div>
+                </ng-template>
+
+                <ng-template pTemplate="right">
+                    <button pButton label="Add" class="p-button-outlined-left mb-2" icon="pi pi-plus"
+                        routerLink="/customer/AddCustomer"></button>
+                </ng-template>
+            </p-toolbar>
+
+            <app-grid [title]="'CustomerDetails'" [listOfItems]="customers1" [gridColumnOptions]="options"
+                [totalRecords]="100" [dataKey]="'id'" [canEdit]="false" [canPreview]="true" [hasLazyLoading]="false" [hasGlobalSearch]="true"
+                (Preview)="onPreviewEvent($event)"></app-grid>
+
+        </div>
+
+    </div>
+</div>
