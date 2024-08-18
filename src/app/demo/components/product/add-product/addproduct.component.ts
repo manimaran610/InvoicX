@@ -3,12 +3,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Product } from 'src/app/demo/api/product';
 import { DbserverserviceService } from 'src/app/demo/service/DbserverserviceService';
 
 
 @Component({
   templateUrl: './addproduct.component.html',
+  providers: [MessageService]
 })
 export class AddProductComponent implements OnInit {
 
@@ -56,6 +58,7 @@ export class AddProductComponent implements OnInit {
       }
     })
 
+   
 
   }
 
@@ -68,6 +71,8 @@ export class AddProductComponent implements OnInit {
           this.uploadedFiles.push(file);
           this.productForm.get('image').patchValue(file.name)
       }
+
+      
     }
 
     onRemove(event:any) {

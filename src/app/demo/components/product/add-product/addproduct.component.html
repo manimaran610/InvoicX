@@ -80,10 +80,10 @@
 						</span>
 						<small class="p-error x-2"
 							*ngIf="(productForm.controls['stockType'].invalid && (productForm.controls['stockType'].dirty || productForm.controls['stockType'].touched))">
-							<div *ngIf="productForm.controls['stockType'].errors?.['required']"> StockType is required.
+							<div *ngIf="productForm.econtrols['stockType'].errors?.['required']"> StockType is required.
 							</div>
 						</small>
-					</div>
+					</div>r
 
 
 					<div *ngIf="isDynamicStock" class="field col-12 md:col-3">
@@ -103,23 +103,26 @@
 						</small>
 					</div>
 
-					<div class="card col-12 m-2">
-						<h5>Product Image</h5>
-							<p-fileUpload [auto]="false" [showCancelButton]="false" [showUploadButton]="false"  [removeStyleClass]="'btn btn-primary'"
-								(onSelect)="onUpload($event)" 
-								 [multiple]="false" accept="image/*" maxFileSize="1000000">
-								<!-- <ng-template pTemplate="content">
-									<ul *ngIf="uploadedFiles.length">
-										<li *ngFor="let file of uploadedFiles">
-											{{ file.name }} - {{ file.size }} bytes
-										</li>
-									</ul>
-								</ng-template> -->
-							</p-fileUpload>
-					
-					</div>
 
 				</div>
+
+				
+				<div class="card col-12 m-2">
+					<h5>Product Image</h5>
+						<p-fileUpload [auto]="false" [showCancelButton]="false" [showUploadButton]="false" 
+							(onSelect)="onUpload($event)" 
+							 [multiple]="false" accept="image/*" maxFileSize="1000000">
+							<!-- <ng-template pTemplate="content">
+								<ul *ngIf="uploadedFiles.length">
+									<li *ngFor="let file of uploadedFiles">
+										{{ file.name }} - {{ file.size }} bytes
+									</li>
+								</ul>
+							</ng-template> -->
+						</p-fileUpload>
+				
+				</div>
+				
 				<div class="flex justify-content-center">
 					<button pButton class="mr-2" label="Submit" (click)="Submit()"></button>
 					<button pButton label="Cancel" routerLink="/customer/ViewCustomer"></button>
