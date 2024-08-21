@@ -24,28 +24,28 @@ export class AppMenuComponent implements OnInit {
                 label: 'Customer',
                 items: [
                     { label: 'View Customer', icon: 'pi pi-chart-bar', routerLink: ['/customer/ViewCustomer'] },
-                    { label: 'Create Customer', icon: 'pi pi-plus-circle', routerLink: ['/customer/AddCustomer'] },
+                    { label: 'Add Customer', icon: 'pi pi-plus-circle', routerLink: ['/customer/AddCustomer'] },
                 ]
             },
             {
                 label: 'Sales',
                 items: [
                     { label: 'Dashboard', icon: 'pi pi-chart-bar', routerLink: ['/uikit/formlayout'] },
-                    { label: 'Create Sales', icon: 'pi pi-shopping-cart', routerLink: ['/uikit/input'] },
+                    { label: 'Add Sales', icon: 'pi pi-shopping-cart', routerLink: ['/uikit/input'] },
                 ]
             },
         
             {
                 label: 'Products',
                 items: [
-                    { label: 'View Products', icon: 'pi pi-box', routerLink: ['/uikit/input'] },
-                    { label: 'Add New Product', icon: 'pi pi-plus-circle', routerLink: ['/product/AddProduct'] },
+                    { label: 'View Products', icon: 'pi pi-box', routerLink: ['/product/ViewProduct'] },
+                    { label: 'Add Product', icon: 'pi pi-plus-circle', routerLink: ['/product/AddProduct'] },
                 ]
             },
             {
                 label: 'Transaction',
                 items: [
-                    { label: 'Create Transaction', icon: 'pi pi-dollar', routerLink: ['/uikit/input'] },
+                    { label: 'Add Transaction', icon: 'pi pi-dollar', routerLink: ['/uikit/input'] },
                     { label: 'View Transactions', icon: 'pi pi-history', routerLink: ['/uikit/formlayout'] },
                 ]
             },
