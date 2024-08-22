@@ -1,12 +1,14 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { CityStates, Country, Customer, Customers, States } from "../api/customer";
+import { Product } from "../api/product";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DbserverserviceService {
   constructor(private http: HttpClient) { }
+
   GetCustomer(): Promise<Customers[]> {
     const WORKSPACE_URL = "https://3000-idx-invoicx-1722047333548.cluster-fu5knmr55rd44vy7k7pxk74ams.cloudworkstations.dev/Customer";
 
@@ -21,6 +23,7 @@ export class DbserverserviceService {
     // Call the backend
     return get(WORKSPACE_URL);
   }
+
   GetCustomerById(customerId:number): Promise<Customers> {
     const WORKSPACE_URL = "https://3000-idx-invoicx-1722047333548.cluster-fu5knmr55rd44vy7k7pxk74ams.cloudworkstations.dev/Customer";
 
@@ -32,6 +35,23 @@ export class DbserverserviceService {
       var result = data.find(x=>x.id==customerId)
       console.log(result);
       return result as Customers;
+    }
+    // Call the backend
+    return get(WORKSPACE_URL);
+  }
+
+   
+  GetProductById(id:number): Promise<Product> {
+    const WORKSPACE_URL = "https://3000-idx-invoicx-1722047333548.cluster-fu5knmr55rd44vy7k7pxk74ams.cloudworkstations.dev/products";
+
+    async function get(url): Promise<Product> {
+      const response = await fetch(url, {
+        credentials: 'include',
+      });
+      const data = await response.json(); // Parse response as JSON
+      var result = data.find(x=>x.id==id)
+      console.log(result);
+      return result as Product;
     }
     // Call the backend
     return get(WORKSPACE_URL);

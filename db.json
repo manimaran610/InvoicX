@@ -1,4 +1,45 @@
 {
+  "products": [
+    {
+      "id": "1",
+      "code": "P123",
+      "name": "Awesome T-Shirt",
+      "description": "Soft and stylish t-shirt",
+      "price": 19.99,
+      "quantity": 50,
+      "stockType": "In Stock",
+      "inventoryStatus": "INSTOCK",
+      "category": "Clothing",
+      "image": "https://img.freepik.com/free-vector/multiple-fruits-vegetables-wallpaper_23-2148481554.jpg"
+    },
+    {
+      "id": "2",
+      "code": "P456",
+      "name": "Wireless Headphones",
+      "description": "High-fidelity audio experience",
+      "price": 79.99,
+      "quantity": 25,
+      "stockType": "Low Stock",
+      "inventoryStatus": "LOWSTOCK",
+      "category": "Electronics",
+      "image": "product2.jpg"
+    },
+    {
+      "id": "3",
+      "code": "P789",
+      "name": "Coffee Maker",
+      "description": "Brew delicious coffee at home",
+      "price": 49.99,
+      "quantity": 10,
+      "stockType": "Out of Stock",
+      "inventoryStatus": "OUTOFSTOCK",
+      "category": "Home Appliances",
+      "image": "product3.jpg"
+    }
+  ],
+
+
+
     "Customer": [
       {
         "name": "ADYAR GATE HOTELS LIMITED",

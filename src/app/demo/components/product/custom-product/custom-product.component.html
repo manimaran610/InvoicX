@@ -1,0 +1,27 @@
+<div class=container>
+    <p-card header="Product Details">
+        <p-card header="{{product.name}}" subheader="{{product.category}}" [style]="{ width: '50%' }">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="{{product.image}}"  [style]="{ width: '50%' }" />
+            </ng-template>
+            <h5>
+                <strong>Description:</strong> {{product.description}}
+            </h5>
+            <h5>
+                <strong>Price:</strong>
+                {{product.price}}
+            </h5>
+            <h5>
+                <strong>Quantity:</strong>
+                {{product.quantity}}
+            </h5>
+            <ng-template pTemplate="footer">
+                <div class="flex gap-3 mt-1">
+                    <p-button label="Cancel" severity="secondary" class="w-full" styleClass="w-full" />
+                    <p-button label="Save" class="w-full" styleClass="w-full" />
+                </div>
+            </ng-template>
+        </p-card>
+
+    </p-card>
+</div>
