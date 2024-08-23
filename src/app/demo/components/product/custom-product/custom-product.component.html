@@ -2,7 +2,7 @@
     <p-card header="Product Details">
         <p-card header="{{product.name}}" subheader="{{product.category}}" [style]="{ width: '50%' }">
             <ng-template pTemplate="header">
-                <img alt="Card" src="{{product.image}}"  [style]="{ width: '50%' }" />
+                <img alt="Card" src="{{product.image}}" [style]="{ width: '50%' }" />
             </ng-template>
             <h5>
                 <strong>Description:</strong> {{product.description}}
@@ -17,11 +17,110 @@
             </h5>
             <ng-template pTemplate="footer">
                 <div class="flex gap-3 mt-1">
-                    <p-button label="Cancel" severity="secondary" class="w-full" styleClass="w-full" />
-                    <p-button label="Save" class="w-full" styleClass="w-full" />
+                    <p-button label="Set Custom Price" class="w-full" styleClass="w-full"
+                        (click)="onSetCustomPrice()" />
                 </div>
             </ng-template>
         </p-card>
 
     </p-card>
+
+
+    <p-dialog [(visible)]="productDialog" [style]="{width: '600px',height:'800px'}" header="Price Details"
+        [modal]="true" class="p-fluid" [formGroup]="productForm">
+        <ng-template pTemplate="content">
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12">
+                    <label class="block text-900 text-xl font-medium mb-2" htmlFor="Price">Price</label>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-dollar"></i>
+                        <input pInputText id="price" type="number" formControlName="price" placeholder="price"
+                            numberonly>
+                    </span>
+                    <small class="p-error x-2"
+                        *ngIf="productForm.controls['price'].invalid && (productForm.controls['price'].dirty || productForm.controls['price'].touched)">
+                        <div *ngIf="productForm.controls['price'].errors?.['required']">Price is required.
+                        </div>
+                        <div *ngIf="productForm.controls['price'].errors?.['min']">Minimum price is 1.
+                        </div>
+                    </small>
+                </div>
+
+                <div class="field col-12">
+                    <label class="block text-900 text-xl font-medium mb-2" htmlFor="effectiveType">Effective
+                        Type</label>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-map"></i>
+                        <p-dropdown [options]="effectiveTypes" optionLabel="name" optionValue="id"
+                            formControlName="effectiveType" (onChange)="onEffectiveTypeChange()"
+                            placeholder="Effective Type"></p-dropdown>
+                    </span>
+                    <small class="p-error x-2"
+                        *ngIf="(productForm.controls['effectiveType'].invalid && (productForm.controls['effectiveType'].dirty || productForm.controls['effectiveType'].touched))">
+                        <div *ngIf="productForm.econtrols['effectiveType'].errors?.['required']"> effectiveType is
+                            required.
+                        </div>
+                    </small>
+                </div>
+
+
+                <div *ngIf="isEffTypeLimited" class="field col-12">
+                    <label class="block text-900 text-xl font-medium mb-2" htmlFor="startDate">Start Date</label>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-calendar"></i>
+                        <input pInputText id="startDate" type="date" formControlName="startDate"
+                            placeholder="Start Date" />
+                    </span>
+                    <small class="p-error x-2"
+                        *ngIf="productForm.controls['startDate'].invalid && (productForm.controls['startDate'].dirty || productForm.controls['startDate'].touched) && isDynamicStock">
+                        <div *ngIf="productForm.controls['startDate'].errors?.['required']">Start Date is
+                            required.
+                        </div>
+                    </small>
+                </div>
+
+                <div *ngIf="isEffTypeLimited" class="field col-12">
+                    <label class="block text-900 text-xl font-medium mb-2" htmlFor="endDate">End Date</label>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-calendar"></i>
+                        <input pInputText id="endDate" type="date" formControlName="endDate" placeholder="End Date" />
+                    </span>
+                    <small class="p-error x-2"
+                        *ngIf="productForm.controls['endDate'].invalid && (productForm.controls['endDate'].dirty || productForm.controls['endDate'].touched) && isDynamicStock">
+                        <div *ngIf="productForm.controls['endDate'].errors?.['required']">End Date is
+                            required.
+                        </div>
+                    </small>
+                </div>
+
+
+                <div class="field col-12">
+                    <label class="block text-900 text-xl font-medium mb-2" htmlFor="appliesTo">Applies To</label>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-users"></i>
+                        <p-multiSelect [options]="customers" formControlName="appliesTo" optionLabel="name"
+                            placeholder="Select Customers" />
+                    </span>
+                    <small class="p-error x-2"
+                        *ngIf="productForm.controls['appliesTo'].invalid && (productForm.controls['appliesTo'].dirty || productForm.controls['appliesTo'].touched) && isDynamicStock">
+                        <div *ngIf="productForm.controls['appliesTo'].errors?.['required']">Customer is
+                            required.
+                        </div>
+                    </small>
+                </div>
+
+
+
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+                (click)="hideDialog()"></button>
+            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" type="Submit"
+                (click)="saveProduct()"></button>
+        </ng-template>
+    </p-dialog>
+
+
 </div>

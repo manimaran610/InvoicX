@@ -9,6 +9,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 @NgModule({
@@ -17,9 +21,13 @@ import { ButtonModule } from 'primeng/button';
     CardModule,
     InputNumberModule,
 		InputTextareaModule,
+    MultiSelectModule,
 		InputTextModule,
     RatingModule,
     ButtonModule,
+    DialogModule,
+    ReactiveFormsModule,
+    DropdownModule,
     CustomProductRoutingModule
   ],
   declarations: [CustomProductComponent],
