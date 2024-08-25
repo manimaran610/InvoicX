@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { CityStates, Country, Customer, Customers, States } from "../api/customer";
 import { Product } from "../api/product";
+import { Customer, CityStates, States, Country } from "../api/models/customer";
 
 @Injectable({
   providedIn: 'root'
@@ -9,32 +9,32 @@ import { Product } from "../api/product";
 export class DbserverserviceService {
   constructor(private http: HttpClient) { }
 
-  GetCustomer(): Promise<Customers[]> {
+  GetCustomer(): Promise<Customer[]> {
     const WORKSPACE_URL = "https://3000-idx-invoicx-1722047333548.cluster-fu5knmr55rd44vy7k7pxk74ams.cloudworkstations.dev/Customer";
 
-    async function get(url): Promise<Customers[]> {
+    async function get(url): Promise<Customer[]> {
       const response = await fetch(url, {
         credentials: 'include',
       });
       const data = await response.json(); // Parse response as JSON
       console.log(data);
-      return data as Customers[];
+      return data as Customer[];
     }
     // Call the backend
     return get(WORKSPACE_URL);
   }
 
-  GetCustomerById(customerId:number): Promise<Customers> {
+  GetCustomerById(customerId:number): Promise<Customer> {
     const WORKSPACE_URL = "https://3000-idx-invoicx-1722047333548.cluster-fu5knmr55rd44vy7k7pxk74ams.cloudworkstations.dev/Customer";
 
-    async function get(url): Promise<Customers> {
+    async function get(url): Promise<Customer> {
       const response = await fetch(url, {
         credentials: 'include',
       });
       const data = await response.json(); // Parse response as JSON
       var result = data.find(x=>x.id==customerId)
       console.log(result);
-      return result as Customers;
+      return result as Customer;
     }
     // Call the backend
     return get(WORKSPACE_URL);
@@ -100,10 +100,10 @@ export class DbserverserviceService {
     // Call the backend
     return get(WORKSPACE_URL);
   }
-  PostCustomer(customer: Customers): Promise<Customers> {
+  PostCustomer(customer: Customer): Promise<Customer> {
     const WORKSPACE_URL = "https://3000-idx-manimarketsoftwarae-1722502139104.cluster-fu5knmr55rd44vy7k7pxk74ams.cloudworkstations.dev/Customer";
   
-    async function post(url, data): Promise<Customers> {
+    async function post(url, data): Promise<Customer> {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -118,7 +118,7 @@ export class DbserverserviceService {
       });
       const result = await response.json();
       console.log(result);
-      return result as Customers;
+      return result as Customer;
     }
   
     return post(WORKSPACE_URL, customer);

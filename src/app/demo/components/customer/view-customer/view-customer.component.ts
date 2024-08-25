@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import {  Customers } from 'src/app/demo/api/customer';
+import {  Customer } from 'src/app/demo/api/models/customer';
 import { CustomerService } from 'src/app/demo/service/customer.service';
 import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
@@ -14,7 +14,7 @@ import { GridColumnOptions } from '../../shared/Models/grid-column-options';
 export class ViewCustomerComponent implements OnInit {
 
 
-    customers1: Customers[] = [];
+    customers1: Customer[] = [];
 
     products: Product[] = [];
 

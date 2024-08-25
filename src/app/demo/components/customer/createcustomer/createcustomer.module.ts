@@ -18,6 +18,8 @@ import { DecimalTwoPlacesDirective } from 'src/app/demo/Directives/DecimalTwoPla
 import { InputGroup, InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddon, InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { StatesCities } from '../shared/constants/states-cities';
+import { BaseHttpClientServiceService } from 'src/app/demo/api/services/shared/base-http-client-service.service';
+import { CustomerService } from 'src/app/demo/api/services/customer.service';
 
 @NgModule({
     imports: [
@@ -40,6 +42,6 @@ import { StatesCities } from '../shared/constants/states-cities';
 		ReactiveFormsModule
     ],
     declarations: [CreatecustomerComponent,numberonlyDirective,DecimalTwoPlacesDirective],
-	providers:[StatesCities]
+	providers:[StatesCities,BaseHttpClientServiceService,CustomerService]
 })
 export class CreateCustomerModule { }

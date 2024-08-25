@@ -54,7 +54,7 @@ export class ViewProductComponent implements OnInit {
 
     navigateUrl(id: number) {
         console.log(id);
-        this.route.navigateByUrl(`/product/AddProduct/${id}`)
+        this.route.navigateByUrl(`/product/CustomProduct/${id}`)
     }
 
     onPreviewEvent($event: any) {

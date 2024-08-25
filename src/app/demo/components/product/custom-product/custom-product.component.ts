@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { getActiveConsumer } from '@angular/core/primitives/signals';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/demo/api/product';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DbserverserviceService } from 'src/app/demo/service/DbserverserviceService';
-import { Customers } from 'src/app/demo/api/customer';
+import { Customer } from 'src/app/demo/api/models/customer';
 
 @Component({
   templateUrl: './custom-product.component.html'
@@ -17,7 +16,7 @@ export class CustomProductComponent implements OnInit  {
   
   public product: Product
 
-  customers: Customers[] = [];
+  customers: Customer[] = [];
   
   public productDialog: boolean = false;
 

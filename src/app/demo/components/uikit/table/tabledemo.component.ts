@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Customer, Representative } from 'src/app/demo/api/customer';
+import { Customer } from 'src/app/demo/api/models/customer';
 import { CustomerService } from 'src/app/demo/service/customer.service';
 import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
@@ -24,9 +24,10 @@ export class TableDemoComponent implements OnInit {
 
     selectedCustomers1: Customer[] = [];
 
-    selectedCustomer: Customer = {};
+    selectedCustomer: Customer = null;
 
-    representatives: Representative[] = [];
+
+    representatives: any[] = [];
 
     statuses: any[] = [];
 
@@ -93,14 +94,14 @@ export class TableDemoComponent implements OnInit {
         if (this.customers3) {
             for (let i = 0; i < this.customers3.length; i++) {
                 const rowData = this.customers3[i];
-                const representativeName = rowData?.representative?.name || '';
+                const representativeName = rowData?.name || '';
 
                 if (i === 0) {
                     this.rowGroupMetadata[representativeName] = { index: 0, size: 1 };
                 }
                 else {
                     const previousRowData = this.customers3[i - 1];
-                    const previousRowGroup = previousRowData?.representative?.name;
+                    const previousRowGroup = previousRowData?.name;
                     if (representativeName === previousRowGroup) {
                         this.rowGroupMetadata[representativeName].size++;
                     }
