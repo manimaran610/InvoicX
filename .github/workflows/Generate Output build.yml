@@ -42,15 +42,16 @@ jobs:
 
           # Remove existing `output` folder if it exists
           rm -rf output || true
+           rm -rf docs || true
 
-          # Move the built files to `output` folder
-          mkdir -p output
-          mv dist/InvoicX/* output/
+          # Move the built files to `docs` folder
+          mkdir -p docs
+          mv dist/InvoicX/* docs/
 
           # List contents of the output folder to verify the files were moved
-          ls -la output
+          ls -la docs
 
           # Commit and push changes
-          git add output
+          git add docs
           git commit -m "Deploy Angular app to output folder" || echo "No changes to commit"
           git push
