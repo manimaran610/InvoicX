@@ -38,8 +38,7 @@ jobs:
 
           # Move the built files to the `output` folder
           mkdir -p output
-          mv dist/* output/
-
+          mv dist/InvoicX/* output/
           # Commit and push changes
           git add output
           git commit -m "Deploy Angular app to output folder"
