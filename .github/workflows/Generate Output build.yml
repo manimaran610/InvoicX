@@ -25,7 +25,14 @@ jobs:
         run: npm install
 
       - name: Build Angular app
-        run: npm run build -- --output-path=output  # Builds and outputs to `output` folder
+        run: |
+          # Build the Angular project
+          npm run build -- --output-path=dist/InvoicX
+          
+      - name: Verify build output
+        run: |
+          # List the contents of the dist folder to confirm files are there
+          ls -la dist/InvoicX
 
       - name: Commit and push changes
         run: |
@@ -33,13 +40,17 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Remove any existing `output` folder in the branch
-          git rm -r output || true
+          # Remove existing `output` folder if it exists
+          rm -rf output || true
 
-          # Move the built files to the `output` folder
+          # Move the built files to `output` folder
           mkdir -p output
           mv dist/InvoicX/* output/
+
+          # List contents of the output folder to verify the files were moved
+          ls -la output
+
           # Commit and push changes
           git add output
-          git commit -m "Deploy Angular app to output folder"
+          git commit -m "Deploy Angular app to output folder" || echo "No changes to commit"
           git push
